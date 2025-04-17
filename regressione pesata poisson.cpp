@@ -21,7 +21,7 @@ int main() {
     cin >> filename;
     ifstream fin(filename);
     if(!fin){
-    	cout<<"Il file non è stato caricato correttamente"<<endl;
+    	cout<<"Il file non Ã¨ stato caricato correttamente"<<endl;
     	return -1;
 	}
 	
