@@ -27,9 +27,11 @@ int main() {
 	
 	if(scelta==0){
 		while(fin>>xval>>yval>>sigma){
-    		x.push_back(xval);
-    		y.push_back(yval);
-    		sigmay.push_back(sigma);
+		if(xval>=320&&xval<=335 || xval>=390&&xval<=405){
+			x.push_back(xval);
+    			y.push_back(yval);
+    			sigmay.push_back(sigma);	
+		}
 		}	
 	}
 	if(scelta==1){
@@ -79,7 +81,7 @@ int main() {
     cout << "b = " << b << endl;
     cout << "sigma_a = " << sigma_a <<endl;
     cout << "sigma_b = " << sigma_b << endl;
-    
+	
     string scelta2;
     cout<<"I due parametri a e b sono covarianti?: ( scrivi: si oppure no )  "<<endl;
     cin>>scelta2;
