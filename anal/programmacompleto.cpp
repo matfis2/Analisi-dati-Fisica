@@ -106,20 +106,20 @@ int main() {
 	cout << "La compatibilita' vale " << lambda <<endl;
 	
 	if(lambda>3){
-		cout<< "La compatibilita' non e' accettabile,quindi il picco e' significativo";
+		cout<< "La compatibilita' non e' accettabile,quindi il picco e' significativo" << endl;
 	}
 	else if (lambda>=2&&lambda <=3){
-		cout<<"La compatibilita' e' sufficiente, quindi il picco protrebbe non essere significativo";
+		cout<<"La compatibilita' e' sufficiente, quindi il picco protrebbe non essere significativo"<< endl;
 	}
 	else if(lambda>= 1&&lambda<2){
-		cout<< "La compatibilita' e' buona ";
+		cout<< "La compatibilita' e' buona "<< endl;
 	}
 	else if(lambda<1){
-		cout<< "La compatibilita' e' ottima, il picco non e' significativo ";
+		cout<< "La compatibilita' e' ottima, il picco non e' significativo "<< endl;
 	}
 
-double alpha = 1- erf (lambda / sqrt (2));
-	cout << "alpha = " << alpha << endl;
+double pvalue = 1- erf (lambda / sqrt (2));
+	cout << "pvalue = " << pvalue << endl;
 
 	
 return 0;    
