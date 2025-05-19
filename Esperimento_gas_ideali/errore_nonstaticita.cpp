@@ -11,6 +11,7 @@ double deviazioneStandardCampionaria(vector<double> dati);
 double media(vector<double> v);
 
 void errore_nonstatiticità(vector<double> tdil,vector<double> tcomp,double bdil, double bcomp){
+    
     double tcompmedia=media(tcomp);
     double tdilmedia=media(tdil);
     double r,incertezza_n;
@@ -19,10 +20,10 @@ void errore_nonstatiticità(vector<double> tdil,vector<double> tcomp,double bdil
     double tmedia,errorereltemp;
 
     cout<<"DEVO CALCOLARE L'ERRORE DELLA NON STATICITA, HO BISOGNO DEL VALORE DI R "<<endl;
-    cout<<"Inserisci il valore di R";
-    cin>>r;
-    ndil=bdil/(r*tdilmedia);
-    ncomp=bcomp/(r*tcompmedia);
+    r=8,314;
+    //Ora la temperatura la converto in kelvin
+    ndil=(bdil/(r*(tdilmedia+273,15)))*9,806/100;
+    ndil=(bcomp/(r*(tcompmedia+273,15)))*9,806/100;
     //per la n media caratteristica di una temperatura faccio la media tra le moli di compressione e di dilatazione
     median=(ndil+ncomp)/2;
 
@@ -39,7 +40,7 @@ void errore_nonstatiticità(vector<double> tdil,vector<double> tcomp,double bdil
     cout<<"La temperatura media per questa particolare temperatura: "<<tmedia<<endl;
     cout<<"Variazione relativa della temperatura:  "<<devstandardtemp/tmedia<<endl;
     cout<<"Deviazione standard della temperatura sapendo l'errore massimo sulla temperatura: "<<erroredevt<<endl;
-    cout<<"l'errore relativo associato alle moli della dilatazione e compressione: "<<incertezza_n<<endl;
+    cout<<"Incertezza relativa su n dovuta alla differenza tra dilatazione e compressione: "<<incertezza_n<<endl;
 }
 
 double deviazioneStandardCampionaria(vector<double> dati) {
