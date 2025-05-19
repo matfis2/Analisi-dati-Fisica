@@ -23,7 +23,7 @@ void errore_nonstatiticità(vector<double> tdil,vector<double> tcomp,double bdil
     r=8,314;
     //Ora la temperatura la converto in kelvin
     ndil=(bdil/(r*(tdilmedia+273,15)))*9,806/100;
-    ndil=(bcomp/(r*(tcompmedia+273,15)))*9,806/100;
+    ncomp=(bcomp/(r*(tcompmedia+273,15)))*9,806/100;
     //per la n media caratteristica di una temperatura faccio la media tra le moli di compressione e di dilatazione
     median=(ndil+ncomp)/2;
 
@@ -40,6 +40,9 @@ void errore_nonstatiticità(vector<double> tdil,vector<double> tcomp,double bdil
     cout<<"La temperatura media per questa particolare temperatura: "<<tmedia<<endl;
     cout<<"Variazione relativa della temperatura:  "<<devstandardtemp/tmedia<<endl;
     cout<<"Deviazione standard della temperatura sapendo l'errore massimo sulla temperatura: "<<erroredevt<<endl;
+    cout<<"Moli in compressione: "<<ncomp<<endl;
+    cout<<"Moli in dilatazione: "<<ndil<<endl;
+    cout<<"Numero di moli medio tra compressione e dilatazione: "<<median<<endl;
     cout<<"Incertezza relativa su n dovuta alla differenza tra dilatazione e compressione: "<<incertezza_n<<endl;
 }
 
@@ -101,9 +104,7 @@ int main(){
     	y2.push_back(yval);
     	z2.push_back(zval);
     
-    } 
-
-    
+    }     
     errore_nonstatiticità(z2,z1,bdil,bcomp);
 
     return 0;
