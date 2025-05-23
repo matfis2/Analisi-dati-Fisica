@@ -10,7 +10,7 @@ using namespace std;
 double deviazioneStandardCampionaria(vector<double> dati);
 double media(vector<double> v);
 
-void errore_nonstatiticità(vector<double> tdil,vector<double> tcomp,double bdil, double bcomp){
+void errore_nonstatiticita(vector<double> tdil,vector<double> tcomp,double bdil, double bcomp){
     
     double tcompmedia=media(tcomp);
     double tdilmedia=media(tdil);
@@ -22,8 +22,8 @@ void errore_nonstatiticità(vector<double> tdil,vector<double> tcomp,double bdil
     cout<<"DEVO CALCOLARE L'ERRORE DELLA NON STATICITA, HO BISOGNO DEL VALORE DI R "<<endl;
     r=8.314;
     //Ora la temperatura la converto in kelvin
-    ndil=(bdil/(r*(tdilmedia+273,15)))*9.806/100;
-    ncomp=(bcomp/(r*(tcompmedia+273,15)))*9.806/100;
+    ndil=(bdil/(r*(tdilmedia+273.15)))*9.806/100;
+    ncomp=(bcomp/(r*(tcompmedia+273.15)))*9.806/100;
     //per la n media caratteristica di una temperatura faccio la media tra le moli di compressione e di dilatazione
     median=(ndil+ncomp)/2;
 
@@ -105,7 +105,7 @@ int main(){
     	z2.push_back(zval);
     
     }     
-    errore_nonstatiticità(z2,z1,bdil,bcomp);
+    errore_nonstatiticita(z2,z1,bdil,bcomp);
 
     return 0;
 }
