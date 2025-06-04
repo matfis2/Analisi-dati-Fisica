@@ -85,10 +85,14 @@ int main() {
         //l'idea del programma è andare a selezionare ogni curva positiva e predere come soglia il 70% rispetto al valore massimo globale in quell'intervallo
         double maxVal = *max_element(bloccoP.begin(), bloccoP.end()); //questa è una funzione della libreria algorithm, usando i metodi .begin() e .end() io mi assicuro di prendere dall'inizio alla fine, è una scrittura compatta
 
-            // if (maxVal < sogliadeimax) {  // Salta picchi troppo piccoli
-            //   idx += double(len);
-            //   continue;
-    	    // }
+        
+            if (maxVal < sogliadeimax) {  // Salta picchi troppo piccoli
+              idx += double(len);
+              continue;
+    	    }
+
+        
+            
           
        	
         double soglia = 0.70 * maxVal;
@@ -143,11 +147,13 @@ int main() {
         }
         double minVal = *min_element(bloccoP.begin(), bloccoP.end());
     //qua nel caso di smorzamento non deve esserci il controllo della soglia?
-  
-        // if (minVal > sogliadeimin) {  
-        //     idx += double(lenNeg);
-        //     continue;
-        // }
+        
+            if (minVal > sogliadeimin) {  
+            idx += double(lenNeg);
+            continue;
+            }
+        
+        
     
         
         double sogliaMin = 0.70 * minVal;
@@ -227,13 +233,13 @@ int main() {
             //aggiorno i dati in logaritmi naturali
             appog.push_back(log(stimamax.at(i)*2*M_PI));
         }       
-        for(int i=0;i<appog.size();i++){
-            stampamax<<stimax1.at(i)<<" "<<stimamax.at(i)<<endl;
-        }
+        // for(int i=0;i<appog.size();i++){
+        //     stampamax<<stimax1.at(i)<<" "<<appog.at(i)<<endl;
+        // }
         cout<<"_____PER I MINIMI: ____"<<endl;
         for(int i=0;i<stimin1.size();i++){
             cout<<"-> tempo: "<<stimin1.at(i)<<" theta: "<<stiminval.at(i)<<endl;
-            appog2.push_back(log(stiminval.at(i)*2*M_PI));
+             appog2.push_back(log(fabs(stiminval.at(i) * 2*M_PI)));
         }
     double gammamax,gammamin;
     interpolazionesemplice(stimax1,appog,gammamax);
@@ -305,7 +311,7 @@ double deviazioneStandardCampionaria(vector<double>& dati) {
     return sqrt(sommaQuadrati / (n - 1));
 }
 //INTERPOLAZIONE SEMPLICE CON INCERTEZZE SULLE Y TUTTE UGUALI
-void interpolazionesemplice(vector<double> x, vector<double> y, double& a){  
+void interpolazionesemplice(vector<double> x, vector<double> y, double& b){  
     double sx = 0.0;   
     double sy = 0.0;  
     double sxx = 0.0;  
@@ -325,8 +331,8 @@ void interpolazionesemplice(vector<double> x, vector<double> y, double& a){
     double delta = n*(sxx) - (sx * sx);
 
     // Stima dei parametri a e b
-    a = ( (sxx * sy) - (sx * sxy) ) / delta;
-    double b = ( (n* sxy) - (sx * sy ) ) / delta;
+    double a = ( (sxx * sy) - (sx * sxy) ) / delta;
+    b = ( (n* sxy) - (sx * sy ) ) / delta;
 
     //Calcolo delle incertezze relative ai parametri   
     double sigma_a = sigmay*sqrt(sxx/ delta);
